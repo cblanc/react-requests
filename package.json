@@ -1,0 +1,22 @@
+{
+  "name": "react-requests",
+  "version": "0.0.0",
+  "description": "",
+  "main": "react-requests.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/jsx react-requests.jsx > react-requests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cblanc/react-requests.git"
+  },
+  "author": "Chris Blanchard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cblanc/react-requests/issues"
+  }
+}
