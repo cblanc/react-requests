@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/jsx react-requests.jsx > react-requests.js"
+    "build": "node_modules/.bin/jsx react-requests.jsx > react-requests.js",
+    "start": "python -m SimpleHTTPServer"
   },
   "repository": {
     "type": "git",
