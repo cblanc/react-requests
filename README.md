@@ -2,8 +2,6 @@
 
 HTTP request widget
 
-This plugin requires jQuery to handle XHR requets
-
 ## API
 
 ```

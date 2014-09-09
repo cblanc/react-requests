@@ -3,10 +3,27 @@
 (function (window, React) {
 	"use strict";
 
-	if (window.jQuery) {
-		var $ = window.jQuery;
-	} else {
-		return console.error("jQuery is required for the ReactRequest component");
+	function requestUrl(url, options) {
+		options = options || {};
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+
+		request.onload = function() {
+			if (request.status >= 200 && request.status < 400){
+			  var data = JSON.parse(request.responseText);
+			  if (typeof options.success === 'function') return options.success(data, request);
+			} else {
+			  // We reached our target server, but it returned an error
+			  if (typeof options.error === 'function') return options.error(request);
+			}
+		};
+
+		if (typeof options.error === 'function') {
+			request.onerror = options.error;
+		}
+
+		request.send();
+
 	}
 
 	var ReactRequest = React.createClass({
@@ -52,7 +69,7 @@
 
 		handleClick: function (event) {
 			this.setState({data: ""});
-			$.ajax(this.url(), {
+			requestUrl(this.url(), {
 				success: function (data) {
 					this.setState({data: JSON.stringify(data, 2, 2)})
 				}.bind(this)
