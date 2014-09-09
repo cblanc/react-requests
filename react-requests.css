@@ -3,7 +3,7 @@ body {
 }
 
 /* This button was generated using CSSButtonGenerator.com */
-button {
+.reactRequest-button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -28,26 +28,37 @@ button {
 	display:inline-block;
 	color:#777777;
 	font-family:arial;
-	font-size:15px;
 	font-weight:bold;
 	font-style:normal;
-	height:50px;
-	line-height:50px;
-	width:100px;
+	padding: 5px 10px;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #ffffff;
 }
 
-button:hover {
+.reactRequest-button:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
 	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
 	background-color:#dfdfdf;
 }
 
-button:active {
+.reactRequest-button:active {
 	position:relative;
 	top:1px;
 }
 
+.reactRequest {
+	border: 1px solid #CCC;
+	padding: 10px;
+	max-width: 480px;
+}
+
+.reactRequest > .reactRequst-url {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.reactRequest > .reactRequst-button {
+	display: inline-block;
+}
