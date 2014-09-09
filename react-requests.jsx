@@ -13,25 +13,52 @@
 		getDefaultProps: function() {
 	    return {
 	      protocol: "http",
-	      targetUrl: ""
+	      targetUrl: "",
+	      queryString: "{}"
 	    };
 	  },
+
 		getInitialState: function () {
+			var queryString;
+			try {
+				queryString = JSON.parse(this.props.queryString)
+			} catch (e) {
+				console.error("Invalid query string presented to React Request widget:", this.props.queryString);
+				queryString = {};
+			}
 			return { 
-				data: ""
+				data: "",
+				queryString: queryString
 			};
 		},
+
 		url: function () {
-			return [this.props.protocol,"://",this.props.targetUrl].join("");
+			var url = [this.props.protocol,"://",this.props.targetUrl].join("");
+			var queryString = "";
+			var queryObject = this.state.queryString;
+
+			for (var key in queryObject) {
+				if (queryObject.hasOwnProperty(key)) {
+					queryString += encodeURI([key,"=",queryObject[key]].join(""))	
+				}
+			}
+			
+			if (queryString.length) {
+				return url + "?" + queryString;
+			} else {
+				return  url;
+			}
 		},
+
 		handleClick: function (event) {
 			this.setState({data: ""});
 			$.ajax(this.url(), {
 				success: function (data) {
-					this.setState({data: JSON.stringify(data.result, 2, 2)})
+					this.setState({data: JSON.stringify(data, 2, 2)})
 				}.bind(this)
 			});
 		},
+
 		render: function () {
 			return (
 				<div className="reactRequest">
