@@ -3,27 +3,27 @@
 (function (window, React) {
 	"use strict";
 
-	function requestUrl(url, options) {
-		options = options || {};
+	function request(url, options) {
 		var request = new XMLHttpRequest();
-		request.open('GET', url, true);
+		options = options || {};
+		var method = options.method || "GET";
+		request.open(method, url, true);
 
 		request.onload = function() {
 			if (request.status >= 200 && request.status < 400){
 			  var data = JSON.parse(request.responseText);
-			  if (typeof options.success === 'function') return options.success(data, request);
+			  if (typeof options.success === "function") return options.success(data, request);
 			} else {
 			  // We reached our target server, but it returned an error
-			  if (typeof options.error === 'function') return options.error(request);
+			  if (typeof options.error === "function") return options.error(request);
 			}
 		};
 
-		if (typeof options.error === 'function') {
+		if (typeof options.error === "function") {
 			request.onerror = options.error;
 		}
 
 		request.send();
-
 	}
 
 	var ReactRequest = React.createClass({
@@ -31,7 +31,8 @@
 	    return {
 	      protocol: "http",
 	      targetUrl: "",
-	      queryString: "{}"
+	      queryString: "{}",
+	      method: "GET"
 	    };
 	  },
 
@@ -69,7 +70,8 @@
 
 		handleClick: function (event) {
 			this.setState({data: ""});
-			requestUrl(this.url(), {
+			request(this.url(), {
+				method: this.props.method,
 				success: function (data) {
 					this.setState({data: JSON.stringify(data, 2, 2)})
 				}.bind(this)
@@ -79,7 +81,10 @@
 		render: function () {
 			return (
 				<div className="reactRequest">
-					<h3 className="reactRequst-url">{this.url()}</h3>
+					<h3 className="reactRequest-url">
+						<span className="reactRequest-method">{this.props.method}</span>
+						{this.url()}
+					</h3>
 					<a className="reactRequest-button" onClick={this.handleClick}>Request</a>
 					<pre>{this.state.data}</pre>
 				</div>

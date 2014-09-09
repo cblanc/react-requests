@@ -4,7 +4,6 @@ body {
 
 /* This button was generated using CSSButtonGenerator.com */
 .reactRequest-button {
-	font-family: inherit;
 	font-size: 100%;
 	padding: .5em 1em;
 	color: #444;
@@ -32,18 +31,34 @@ body {
 .reactRequest {
 	border: 1px solid #CCC;
 	padding: 10px;
-	max-width: 480px;
+	max-width: 680px;
 }
 
-.reactRequest > .reactRequst-url {
-	border: 1px solid #CCC;
-	padding: 5px;
-	border-radius: 3px;
+.reactRequest > .reactRequest-url {
+
+}
+
+.reactRequest-method {
+	text-transform: uppercase;
 	margin-right: 10px;
-}
-
-.reactRequest > .reactRequst-button {
-	
+	font-size: 100%;
+	padding: .5em 1em;
+	color: #444;
+	color: rgba(0,0,0,.8);
+	border: 1px solid #999;
+	border: 0 rgba(0,0,0,0);
+	background-color: #ABC;
+	text-decoration: none;
+	border-radius: 2px;
+	display: inline-block;
+	zoom: 1;
+	line-height: normal;
+	white-space: nowrap;
+	vertical-align: baseline;
+	text-align: center;
+	cursor: pointer;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
 }
 
 pre {

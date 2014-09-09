@@ -9,14 +9,13 @@
 		<div id="example"></div>
 		<script src="../bower_components/react/react.js"></script>
 		<script src="../bower_components/react/JSXTransformer.js"></script>
-		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/jsx" src="../react-requests.jsx"></script>
 
 		<script type="text/jsx">
 			/** @jsx React.DOM */
 
 			React.renderComponent(
-				<ReactRequest targetUrl="postcodes.io/postcodes/CF147EE" protocol="http" queryString='{"foo":"bar"}' />,
+				<ReactRequest targetUrl="postcodes.io/postcodes/CF147EE" protocol="http" queryString='{"foo":"bar"}' method="GET" />,
 				document.getElementById("example")
 			);
 		</script>
